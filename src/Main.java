@@ -1,6 +1,7 @@
 import mnist.MnistImageFile;
 import mnist.MnistLabelFile;
 import network.Network;
+import network.NetworkTools;
 import trainset.TrainSet;
 
 import java.io.File;
@@ -23,6 +24,9 @@ public class Main {
 
         TrainSet set = createTrainSet(0, NO_OF_IMAGES);
         trainData(network, set, 100, 50, 100);
+
+        TrainSet testSet = createTrainSet(5000, 9999);
+        testTrainSet(network, testSet, 10);
     }
 
     public static TrainSet createTrainSet(int start, int end) {
@@ -81,6 +85,23 @@ public class Main {
         * */
         for (int e=0 ; e<epochs ; e++) {
             net.train(set, loops, batch_size);
+        }
+    }
+
+    public static void testTrainSet(Network net, TrainSet set, int printSteps) {
+        int correct = 0;
+
+        for (int i=0 ; i<set.size() ; i++) {
+            double highest = NetworkTools.indexOfHighestValue(net.calculate((set.getInput(i))));
+            double actualHighest = NetworkTools.indexOfHighestValue(set.getOutput(i));
+
+            if(highest == actualHighest) {
+                correct++;
+            }
+            if(i%printSteps == 0) {
+                System.out.println(i + ": " + (double)correct / (double) (i + 1));
+            }
+            System.out.println("Testing finished, RESULT: " + correct + " / " + set.size()+ "  -> " + (double)correct / (double)set.size() +" %");
         }
     }
 

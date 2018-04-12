@@ -10,6 +10,7 @@ public class TrainSet {
     public final int OUTPUT_SIZE;
 
     //double[][] <- index1: 0 = input, 1 = output || index2: index of element
+    // TODO is index = 1 the output or the actual answer???
     private ArrayList<double[][]> data = new ArrayList<>();
 
     public TrainSet(int INPUT_SIZE, int OUTPUT_SIZE) {
@@ -35,6 +36,24 @@ public class TrainSet {
         } else {
             return this;
         }
+    }
+
+    public int size() {
+        return data.size();
+    }
+
+    public double[] getInput(int index) {
+        if(index >=0 && index < size()) {
+            return data.get(index)[0];
+        }
+        return null;
+    }
+
+    public double[] getOutput(int index) {
+        if(index >=0 && index < size()) {
+            return data.get(index)[1];
+        }
+        return null;
     }
 
 }
