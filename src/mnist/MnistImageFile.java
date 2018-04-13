@@ -16,7 +16,7 @@ public class MnistImageFile extends MnistDbFile {
 
     /**
      * Creates new MNIST database image file ready for reading.
-     * 
+     *
      * @param name
      *            the system-dependent filename
      * @param mode
