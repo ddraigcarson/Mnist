@@ -2,7 +2,7 @@ package network;
 
 public class NetworkConstants {
 
-    public static int INPUT_NEURONS  = 28*28; // Pictures are 28 by 28 pixels
+    public static int INPUT_NEURONS  = 28*28; // 784 - Pictures are 28 by 28 pixels
     public static int OUTPUT_NEURONS = 10; // There are 10 possible outputs , 0-9
 
     public static int HIDDEN_LAYER_1_NEURONS = 70; // TODO Why this number?

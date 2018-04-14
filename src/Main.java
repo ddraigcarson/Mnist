@@ -1,18 +1,15 @@
-import mnist.MnistImageFile;
-import mnist.MnistLabelFile;
+import file.FileIO;
 import network.Network;
-import network.NetworkConstants;
 import network.NetworkTools;
+import tools.ToStringTools;
 import trainset.TrainSet;
 
-import java.io.File;
+import java.util.Arrays;
 
 import static network.NetworkConstants.*;
 import static trainset.MnistTrainSetTools.createTrainSet;
 
 public class Main {
-
-
 
     public static void main(String[] args) {
         Network network = new Network(
@@ -23,6 +20,8 @@ public class Main {
 
         TrainSet testSet = createTrainSet(TEST_IMAGES_START, TEST_IMAGES_END);
         testTrainSet(network, testSet, 10);
+
+        FileIO.writeToFile("weights.csv", ToStringTools.double3DArrayToString(network.weights));
     }
 
 
