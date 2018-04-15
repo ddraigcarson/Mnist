@@ -21,7 +21,9 @@ public class Network {
 
     /*
     * Output is a 2D array as it is the output of each neuron in each layer. not the whole network.
-    * TODO why is weights a 3D array ???
+    * Weights is a 3d array, x = layer, y = neurons in layer, z = neurons in previous layer
+    *   x starts at 1 not 0 as there is no -1 layer
+    * Bias is a 2d array, x = layer, y = neurons in layer
     * TODO where do these bounds come from ??
     * */
     public Network(int[] NETWORK_LAYER_SIZES) {

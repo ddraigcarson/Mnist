@@ -24,7 +24,7 @@ public class MnistTrainSetTools {
      * - CREATE THE INPUT NEURON SET
      * - CREATE THE OUTPUT NEURON SET
      * - TODO WHAT DOES THE LABEL FILE LOOK LIKE
-     * - INITIALISE THE OUTPUT SET ??? todo
+     * - INITIALISE THE OUTPUT SET - each value is set to 0 (double default) then the output neuron with i=the images number is set to 1
      * -- FOR EACH INPUT NEURON SET IT TO A 0-1 VALUE CORRESPONDING TO THE COLOUR OF THE PIXEL
      */
     public static TrainSet createTrainSet(int start, int end) {
