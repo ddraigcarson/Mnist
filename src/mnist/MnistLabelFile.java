@@ -6,13 +6,13 @@ import java.io.IOException;
 
 /**
  * 
- * MNIST database label file.
+ * MNIST database label persistance.
  * 
  */
 public class MnistLabelFile extends MnistDbFile {
 
     /**
-     * Creates new MNIST database label file ready for reading.
+     * Creates new MNIST database label persistance ready for reading.
      * 
      * @param name
      *            the system-dependent filename

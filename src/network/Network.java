@@ -2,6 +2,8 @@ package network;
 
 import trainset.TrainSet;
 
+import static network.NetworkConstants.*;
+
 public class Network {
 
     private double[][] output;
@@ -13,44 +15,37 @@ public class Network {
 
     public final int[] NETWORK_LAYER_SIZES;
     public final int   INPUT_SIZE;
-    public final int   NETWORK_SIZE;
+    public final int   NO_OF_LAYERS;
     public final int   OUTPUT_SIZE;
     public final int   OUTPUT_LAYER;
 
-    public Network(int... NETWORK_LAYER_SIZES) {
+    /*
+    * Output is a 2D array as it is the output of each neuron in each layer. not the whole network.
+    * TODO why is weights a 3D array ???
+    * TODO where do these bounds come from ??
+    * */
+    public Network(int[] NETWORK_LAYER_SIZES) {
         this.NETWORK_LAYER_SIZES = NETWORK_LAYER_SIZES;
+
+        this.NO_OF_LAYERS = NETWORK_LAYER_SIZES.length;
+        this.OUTPUT_LAYER = NO_OF_LAYERS -1;
+
         this.INPUT_SIZE = NETWORK_LAYER_SIZES[0];
-        this.NETWORK_SIZE = NETWORK_LAYER_SIZES.length;
-        this.OUTPUT_SIZE = NETWORK_LAYER_SIZES[NETWORK_SIZE - 1];
-        this.OUTPUT_LAYER = NETWORK_SIZE-1;
+        this.OUTPUT_SIZE = NETWORK_LAYER_SIZES[OUTPUT_LAYER];
 
-        /*
-        * TODO output of a neuron ??? that is why is it a 2D array?
-        * The output of each layer? that's why it is NETWORK_SIZE long
-        * TODO why is weights a 3D array ???
-        * */
-        this.output = new double[NETWORK_SIZE][];
-        this.weights = new double[NETWORK_SIZE][][];
-        this.bias = new double[NETWORK_SIZE][];
+        this.output = new double[NO_OF_LAYERS][];
+        this.weights = new double[NO_OF_LAYERS][][];
+        this.bias = new double[NO_OF_LAYERS][];
 
-        this.error_signal = new double[NETWORK_SIZE][];
-        this.output_derivative = new double[NETWORK_SIZE][];
+        this.error_signal = new double[NO_OF_LAYERS][];
+        this.output_derivative = new double[NO_OF_LAYERS][];
 
-        for (int i=0 ; i<NETWORK_SIZE ; i++) {
-            /*
-            * 784, 70, 35, 10
-            * */
+        for (int i = 0; i< NO_OF_LAYERS; i++) {
             this.output[i] = new double[NETWORK_LAYER_SIZES[i]];
             this.error_signal[i] = new double[NETWORK_LAYER_SIZES[i]];
             this.output_derivative[i] = new double[NETWORK_LAYER_SIZES[i]];
-
-            /* TODO where do these bounds come from */
-            this.bias[i] = NetworkTools.createRandomArray(NETWORK_LAYER_SIZES[i], -0.5, 0.7);
-
-            if (i > 0) {
-                weights[i] = NetworkTools.createRandomArray(NETWORK_LAYER_SIZES[i], NETWORK_LAYER_SIZES[i-1], -1, 1);
-            }
         }
+
     }
 
     public void train(TrainSet set, int loops, int batch_size) {
@@ -94,7 +89,7 @@ public class Network {
         calculate(input);
         double v = 0;
         for (int i=0 ; i<target.length ; i++) {
-            v += (target[i] - output[NETWORK_SIZE-1][i]) * (target[i] - output[NETWORK_SIZE-1][i]);
+            v += (target[i] - output[NO_OF_LAYERS -1][i]) * (target[i] - output[NO_OF_LAYERS -1][i]);
         }
         return v / (2d * target.length);
     }
@@ -116,7 +111,7 @@ public class Network {
         }
         this.output[0] = input;
 
-        for (int layer=1 ; layer<NETWORK_SIZE ; layer++) {
+        for (int layer = 1; layer< NO_OF_LAYERS; layer++) {
             for (int neuron=0 ; neuron<NETWORK_LAYER_SIZES[layer] ; neuron++) {
 
                 double sum = bias[layer][neuron];
@@ -127,7 +122,7 @@ public class Network {
                 output_derivative[layer][neuron] = output[layer][neuron] * (1 - output[layer][neuron]);
             }
         }
-        return output[NETWORK_SIZE-1];
+        return output[NO_OF_LAYERS -1];
     }
 
     private double sigmoid(double x) {
@@ -145,10 +140,10 @@ public class Network {
     * */
     public void backpropError(double[] target) {
         for (int neuron=0 ; neuron<NETWORK_LAYER_SIZES[OUTPUT_LAYER] ; neuron++) {
-            error_signal[NETWORK_SIZE-1][neuron] = (output[OUTPUT_LAYER][neuron] - target[neuron])
+            error_signal[NO_OF_LAYERS -1][neuron] = (output[OUTPUT_LAYER][neuron] - target[neuron])
                     * output_derivative[OUTPUT_LAYER][neuron];
         }
-        for (int layer=NETWORK_SIZE-2 ; layer>0 ; layer--) {
+        for (int layer = NO_OF_LAYERS -2; layer>0 ; layer--) {
             for (int neuron=0 ; neuron<NETWORK_LAYER_SIZES[layer] ; neuron++) {
                 double sum = 0;
                 for (int nextNeuron=0 ; nextNeuron<NETWORK_LAYER_SIZES[layer+1] ; nextNeuron++) {
@@ -169,7 +164,7 @@ public class Network {
     *
     * */
     public void updateWeights(double eta) {
-        for (int layer=1 ; layer<NETWORK_SIZE ; layer++) {
+        for (int layer = 1; layer< NO_OF_LAYERS; layer++) {
             for (int neuron=0 ; neuron<NETWORK_LAYER_SIZES[layer] ; neuron++) {
 
                 double delta = -eta*error_signal[layer][neuron];

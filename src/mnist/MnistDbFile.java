@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 /**
- * MNIST database file containing entries that can represent image or label
- * data. Extends the standard random access file with methods for navigating
- * over the entries. The file format is basically idx with specific header
+ * MNIST database persistance containing entries that can represent image or label
+ * data. Extends the standard random access persistance with methods for navigating
+ * over the entries. The persistance format is basically idx with specific header
  * information. This includes a magic number for determining the type of stored
  * entries, count of entries.
  */
@@ -31,7 +31,7 @@ public abstract class MnistDbFile extends RandomAccessFile {
     public MnistDbFile(String name, String mode) throws IOException {
         super(name, mode);
         if (getMagicNumber() != readInt()) {
-            throw new RuntimeException("This MNIST DB file " + name + " should start with the number " + getMagicNumber() + ".");
+            throw new RuntimeException("This MNIST DB persistance " + name + " should start with the number " + getMagicNumber() + ".");
         }
         count = readInt();
     }
@@ -39,7 +39,7 @@ public abstract class MnistDbFile extends RandomAccessFile {
     /**
      * MNIST DB files start with unique integer number.
      * 
-     * @return integer number that should be found in the beginning of the file.
+     * @return integer number that should be found in the beginning of the persistance.
      */
     protected abstract int getMagicNumber();
 

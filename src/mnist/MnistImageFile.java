@@ -6,7 +6,7 @@ import java.io.IOException;
 
 /**
  * 
- * MNIST database image file. Contains additional header information for the
+ * MNIST database image persistance. Contains additional header information for the
  * number of rows and columns per each entry.
  * 
  */
@@ -15,7 +15,7 @@ public class MnistImageFile extends MnistDbFile {
     private int cols;
 
     /**
-     * Creates new MNIST database image file ready for reading.
+     * Creates new MNIST database image persistance ready for reading.
      *
      * @param name
      *            the system-dependent filename

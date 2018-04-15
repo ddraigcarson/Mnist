@@ -17,7 +17,7 @@ public class NetworkConstants {
     public static int TRAINING_BATCH_SIZE = 100;
 
     /*
-     * IDX is an index file extension commonly used in Windows to speed up the search
+     * IDX is an index persistance extension commonly used in Windows to speed up the search
      * in a db
      * */
     public static String IMAGE_FILE_PATH = "/res/trainImage.idx3-ubyte";
@@ -30,4 +30,11 @@ public class NetworkConstants {
     * 255 == black
     * */
     public static double PIXEL_COLOUR_VALUE_LIMIT = 256;
+
+
+    public static double BIAS_LOWER_BOUND = -0.5;
+    public static double BIAS_UPPER_BOUND = 0.7;
+
+    public static double WEIGHTS_LOWER_BOUND = -1;
+    public static double WEIGHTS_UPPER_BOUND = 1;
 }

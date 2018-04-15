@@ -1,10 +1,9 @@
-import file.FileIO;
+import network.NetworkBuilder;
+import persistance.FileIO;
 import network.Network;
 import network.NetworkTools;
-import tools.ToStringTools;
+import persistance.Storage;
 import trainset.TrainSet;
-
-import java.util.Arrays;
 
 import static network.NetworkConstants.*;
 import static trainset.MnistTrainSetTools.createTrainSet;
@@ -12,16 +11,44 @@ import static trainset.MnistTrainSetTools.createTrainSet;
 public class Main {
 
     public static void main(String[] args) {
-        Network network = new Network(
-                INPUT_NEURONS, HIDDEN_LAYER_1_NEURONS, HIDDEN_LAYER_2_NEURONS, OUTPUT_NEURONS);
+        Storage storage = new FileIO();
+        boolean existingNetwork = storage.checkForExistingWeights() && storage.checkForExistingBiases();
 
-        TrainSet set = createTrainSet(TRAINING_IMAGES_START, TRAINING_IMAGES_END);
-        trainData(network, set, 100, 50, TRAINING_BATCH_SIZE);
+        NetworkBuilder builder = new NetworkBuilder();
+        Network network = null;
+
+        if (existingNetwork) {
+            System.out.println("Loading existing weights and biases");
+
+            network = builder.newNetwork()
+                    .addInputLayer(INPUT_NEURONS)
+                    .addHiddenLayer(HIDDEN_LAYER_1_NEURONS)
+                    .addHiddenLayer(HIDDEN_LAYER_2_NEURONS)
+                    .addOutputLayer(OUTPUT_NEURONS)
+                    .withWeights(storage.readWeightsFromFile(builder.getLayers()))
+                    .withBiases(storage.readBiasesFromFile(builder.getLayers()))
+                    .build();
+
+            System.out.println("Loaded existing weights and biases");
+        } else {
+            network = builder.newNetwork()
+                    .addInputLayer(INPUT_NEURONS)
+                    .addHiddenLayer(HIDDEN_LAYER_1_NEURONS)
+                    .addHiddenLayer(HIDDEN_LAYER_2_NEURONS)
+                    .addOutputLayer(OUTPUT_NEURONS)
+                    .withRandomWeights()
+                    .withRandomBiases()
+                    .build();
+
+            TrainSet set = createTrainSet(TRAINING_IMAGES_START, TRAINING_IMAGES_END);
+            trainData(network, set, 100, 50, TRAINING_BATCH_SIZE);
+
+            storage.writeWeightsToFile(network.weights);
+            storage.writeBiasesToFile(network.bias);
+        }
 
         TrainSet testSet = createTrainSet(TEST_IMAGES_START, TEST_IMAGES_END);
         testTrainSet(network, testSet, 10);
-
-        FileIO.writeToFile("weights.csv", ToStringTools.double3DArrayToString(network.weights));
     }
 
 
@@ -48,7 +75,7 @@ public class Main {
             if(i%printSteps == 0) {
                 System.out.println(i + ": " + (double)correct / (double) (i + 1));
             }
-            System.out.println("Testing finished, RESULT: " + correct + " / " + set.size()+ "  -> " + (double)correct / (double)set.size() +" %");
+            System.out.println("Testing finished, RESULT: " + correct + " / " + set.size()+ "  -> " + (double)correct*100 / (double)set.size() +" %");
         }
     }
 

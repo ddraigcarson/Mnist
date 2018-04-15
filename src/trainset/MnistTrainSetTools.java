@@ -11,7 +11,7 @@ import static network.NetworkConstants.OUTPUT_NEURONS;
 
 public class MnistTrainSetTools {
     /**
-     * Creates new MNIST database image file ready for reading.
+     * Creates new MNIST database image persistance ready for reading.
      *
      * @param start
      *            Image idx index start
