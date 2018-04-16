@@ -10,7 +10,6 @@ public class TrainSet {
     public final int OUTPUT_SIZE;
 
     //double[][] <- index1: 0 = input, 1 = output || index2: index of element
-    // TODO is index = 1 the output or the actual answer???
     private ArrayList<double[][]> data = new ArrayList<>();
 
     public TrainSet(int INPUT_SIZE, int OUTPUT_SIZE) {
@@ -29,8 +28,8 @@ public class TrainSet {
         if (size > 0 && size <= this.size()) {
             TrainSet set = new TrainSet(INPUT_SIZE, OUTPUT_SIZE);
             Integer[] ids = NetworkTools.randomValues(0, this.size()-1, size);
-            for (Integer i : ids) {
-                set.addData(this.getInput(i), this.getOutput(i));
+            for (Integer id : ids) {
+                set.addData(this.getInput(id), this.getOutput(id));
             }
             return set;
         } else {

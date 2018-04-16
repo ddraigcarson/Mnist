@@ -53,10 +53,6 @@ public class Main {
 
 
     public static void trainData(Network net, TrainSet set, int epochs, int loops, int batch_size) {
-        /*
-        * Epochs is a period of time in ones life
-        * Maybe we repeat the training for increased accuracy
-        * */
         for (int e=0 ; e<epochs ; e++) {
             net.train(set, loops, batch_size);
         }

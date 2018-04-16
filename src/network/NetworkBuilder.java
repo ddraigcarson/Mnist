@@ -50,6 +50,7 @@ public class NetworkBuilder {
     }
 
     public NetworkBuilder withRandomWeights() {
+        weights = new double[NO_OF_LAYERS][][];
         for (int i = 1; i< NO_OF_LAYERS; i++) {
             weights[i] = NetworkTools.createRandomArray(
                     layers.get(i),
@@ -62,6 +63,7 @@ public class NetworkBuilder {
     }
 
     public NetworkBuilder withRandomBiases() {
+        bias = new double[NO_OF_LAYERS][];
         for (int i = 0; i< NO_OF_LAYERS; i++) {
             bias[i] = NetworkTools.createRandomArray(
                     layers.get(i),
