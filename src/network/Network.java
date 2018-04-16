@@ -97,32 +97,30 @@ public class Network {
     }
 
     public double[] calculate(double... input) {
-        if( input.length != INPUT_SIZE) {
+        if (input.length != this.INPUT_SIZE) {
             return null;
         }
+
         this.output[0] = input;
 
-        for (int layer = 1; layer< NO_OF_LAYERS; layer++) {
-            if( layer != 1) {
-                System.out.println("test");
-            }
-            for (int neuron=0 ; neuron<NETWORK_LAYER_SIZES[layer] ; neuron++) {
+        for(int layer = 1; layer < NO_OF_LAYERS; layer ++) {
+            for(int neuron = 0; neuron < NETWORK_LAYER_SIZES[layer]; neuron ++) {
+
                 double neuronBias = bias[layer][neuron];
                 double neuronOutput = 0;
 
-                for (int prevNeuron=0 ; prevNeuron<NETWORK_LAYER_SIZES[layer-1] ; prevNeuron++) {
+                for(int prevNeuron = 0; prevNeuron < NETWORK_LAYER_SIZES[layer-1]; prevNeuron ++) {
                     double prevNeuronOutput = output[layer-1][prevNeuron];
                     double prevNeuronWeight = weights[layer][neuron][prevNeuron];
-                    neuronOutput += prevNeuronOutput*prevNeuronWeight;
+                    neuronOutput += prevNeuronOutput * prevNeuronWeight;
                 }
                 neuronOutput += neuronBias;
 
                 output[layer][neuron] = sigmoid(neuronOutput);
-                output_derivative[layer][neuron] = sigmoidDerivative(neuronOutput);
+                output_derivative[layer][neuron] = sigmoidDerivative(output[layer][neuron]);
             }
         }
-        // Not used
-        return output[NO_OF_LAYERS -1];
+        return output[NO_OF_LAYERS-1];
     }
 
     private double sigmoid(double x) {

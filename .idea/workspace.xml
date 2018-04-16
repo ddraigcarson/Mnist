@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd2e8fcd-2ba0-42ca-8b9d-b25c1c4edf7d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mnist/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mnist/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mnist/network/Network.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mnist/network/Network.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mnist/network/NetworkBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mnist/network/NetworkBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mnist/trainset/TrainSet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mnist/trainset/TrainSet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/biases.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/weights.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/network/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/Network.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/network/NetworkBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/NetworkBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/readMe.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/readMe.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/trainset/TrainSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trainset/TrainSet.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.48565966">
+    <splitter split-orientation="horizontal" split-proportion="0.8202717">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
@@ -79,8 +68,8 @@
           <file leaf-file-name="Network.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/network/Network.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="214">
-                  <caret line="57" selection-start-line="57" selection-end-line="57" />
+                <state relative-caret-position="336">
+                  <caret line="119" column="91" selection-start-line="119" selection-start-column="91" selection-end-line="119" selection-end-column="91" />
                   <folding>
                     <element signature="e#4283#4284#0" expanded="true" />
                     <element signature="e#4329#4330#0" expanded="true" />
@@ -107,7 +96,7 @@
           <file leaf-file-name="readMe.md" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/readMe.md">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="356">
+                <state relative-caret-position="423">
                   <caret line="42" column="121" selection-start-line="42" selection-start-column="121" selection-end-line="42" selection-end-column="121" />
                 </state>
               </provider>
@@ -164,10 +153,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="953" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-7" />
     <option name="width" value="974" />
-    <option name="height" value="527" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -302,22 +291,23 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="0" width="974" height="1047" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" order="7" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32837406" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33154505" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1828125" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.1828125" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32943678" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3995749" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3995749" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -797,7 +787,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/readMe.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
+        <state relative-caret-position="423">
           <caret line="42" column="121" selection-start-line="42" selection-start-column="121" selection-end-line="42" selection-end-column="121" />
         </state>
       </provider>
@@ -838,8 +828,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/network/Network.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
+        <state relative-caret-position="336">
+          <caret line="119" column="91" selection-start-line="119" selection-start-column="91" selection-end-line="119" selection-end-column="91" />
           <folding>
             <element signature="e#4283#4284#0" expanded="true" />
             <element signature="e#4329#4330#0" expanded="true" />
